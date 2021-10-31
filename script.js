@@ -1,4 +1,4 @@
-
+// Variable for the section with all elements
 const quizSection = document.querySelector("#quizSection");
 
 // Dark / Light mode toggle variables
@@ -21,11 +21,11 @@ milk.addEventListener("click", () => {
 //Styles the currently active dark/light mode buttons
 let btns = toggleBtns.getElementsByClassName("btn");
 for (let i = 0; i < btns.length; i++) {
-  btns[i].addEventListener("click", function() {
-  let current = document.getElementsByClassName("active");
-  current[0].className = current[0].className.replace(" active", "");
-  this.className += " active";
-  });
+btns[i].addEventListener("click", function() {
+let current = document.getElementsByClassName("active");
+current[0].className = current[0].className.replace(" active", "");
+this.className += " active";
+});
 }
 
 // Objects with question sections within an array
@@ -52,7 +52,7 @@ let quiz = [
 },
 {
     question: "Ordet kaffe betyder vin på det språket det härstammar ifrån. Vilket språk är det?",
-    option: {
+    options: {
     a: "Arabiska",
     b: "Ryska",
     c: "Turkiska",
@@ -132,63 +132,105 @@ correct: ["1", "4"]
 }
 ]
 
-const quizContainer = document.querySelector("#quizContainer");
 
-    quiz.forEach((obj) => {
-        let questions = document.createElement("h4");
-        questions.innerHTML = obj.question;
-        quizContainer.appendChild(questions);
-        let optionContainer = document.createElement("ul");
-        quizContainer.appendChild(optionContainer);
-        
+// Renders out the content of the quiz
+function renderQuiz() {
 
-        for(const option in obj.options){
-            let answer = document.createElement("li");
-            
-                let option = document.createElement("label");
-                let radioBtns = document.createElement("input");
-        
-        }
-       
-    });
+    // Variable for the container that will keep all the elements below
+    const quizContainer = document.querySelector("#quizContainer");
 
-
-
-// // Renders the question 
-
-// let currentQuestion = 0;
-// let correctAnswer = quiz.correct;
-// let ans = document.querySelector('input[name="answer"]:checked');
-// let userAnswer = ans.value;
-
-// let qst = quiz[currentQuestion];
-// let lastQuestion = currentQuestion === quiz.length -1;
-
-
-// Variable to keep track of the collected scores
- let currentScore = 0;
-
-// // Variable for the total endscore
-// let total = 0;
-
-
-
-// // Variable for the retry and next buttons
-// let retry = document.querySelector("#retry");
-// let next = document.querySelector("#next");
-
-// /* Counts the score and proceeds to the next question by writing it out
-// to the quiz container. Use a for */
-// next.addEventListener("click", () => {
+    // Empty string to keep the form containing the question and ul
+    let quizStr = '';
     
-// })
+    // Loops over the object properties (obj) and also takes an index parameter
+    quiz.forEach((obj, questionIndex) => {
+    // Empty string to keep the li element containing the label and input
+        let answerStr = ''; 
 
-// Clears the score count and returns to the first question
-retry.addEventListener("click", () => {
-    if(currentScore > 0){
-        currentScore = 0;
-    }   
-})
+        //Loops over the options object inside of the array quiz
+        for(const option in obj.options){
+
+            /* If it has an object that has an array as a value it renders the inputs as checkboxes */
+            if(Array.isArray(obj.correct)=== true){
+                answerStr += `
+                <li>
+                <label>
+                <input 
+                type="checkbox"
+                name="question-${questionIndex}"
+                data-correct="${obj.correct}"
+                >
+                ${obj.options[option]}
+                </label>
+                <li> `;
+
+                /* Else it renders the inputs as radiobuttons */
+            } else {
+                answerStr += `
+                <li>
+                <label>
+                <input 
+                type="radio"
+                name="question-${questionIndex}"
+                data-correct="${obj.correct}"
+                >
+                ${obj.options[option]}
+                </label>
+                <li> `;
+            } 
+        }
+        quizStr += `
+        <form>
+            <h3>${obj.question}</h3>
+            <ul>
+            ${answerStr}
+            </ul>
+        </form> `
+    })
+    // Assigns the quizContainer the contents of quizStr
+    quizContainer.innerHTML = quizStr;
+
+    
+    // Clears the score count and returns to the first question
+    // let retry = document.querySelector("#retry");
+    // retry.addEventListener("click", () => {
+    //   
+    // })
+
+    
+// Variable to keep track of the collected scores
+// Variable for the total endscore
+function countScore (){
+    // for( let answ in quiz){
+//     let userAnswer = input.correct(quiz.options);
+//     if userAnswer === answ.correct{
+//         let score = 0;
+//         score++;
+//     }
+//     let total = 0;
+//     //Collects the score and outputs it into another div
+//     let check = document.querySelector("#check");
+//     check.addEventListener("click", () => {
+//     total = score;
+//     quizContainer.innerHTML = `
+//     <p>Your total score is ${total} / 10</p>
+//     `
+// })
+// }
+}
+
+
+}
+
+renderQuiz(); // Function call
+
+
+
+
+
+
+
+
 
 
 
