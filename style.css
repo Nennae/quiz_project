@@ -65,6 +65,7 @@ i {
     border-radius: 20px;
     overflow: hidden;
     margin: 50px auto;
+    padding-bottom: 40px;
 }
 
 h3 {
@@ -97,7 +98,7 @@ li {
 #buttonContainer{
     display: flex;
     justify-content: center;
-    margin: 100px auto;
+    margin: 50px auto;
     text-align: center;
 }
 
@@ -119,3 +120,7 @@ li {
     transition: ease-in-out 0.5s;
 }
 
+#results{
+    font-size: 30px;
+    text-align: center;
+}
