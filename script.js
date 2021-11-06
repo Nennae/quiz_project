@@ -95,8 +95,9 @@ function displayScore(){
         
         if(userAnswer >= 2){
             userAnswer.forEach(e => {
-            let selected = e.target.userAnswer;
+            let selected = e.userAnswer;
             answers.push(selected);
+            console.log(selected)
         })
         } else {
             answers = userAnswer[0];
@@ -118,7 +119,7 @@ for(let i = 0; i < quiz.length; i++){
         score++;
     }
 }
-
+    
     resultsContainer.innerHTML = `<p>You scored : ${score} / ${quiz.length}</p>`;
 }
 
