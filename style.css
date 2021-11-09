@@ -67,14 +67,19 @@ i {
     margin: 50px auto;
     padding-bottom: 40px;
 }
-
-h3 {
+.question {
     margin: 50px auto;
     border-bottom: 1px solid rgba(116, 116, 110, 0.9);
     max-width: 700px;
     padding: 30px;
     letter-spacing: 2px;
     font-weight: bolder;
+    font-size: 20px;
+}
+.answers {
+    line-height: 2.5;
+    margin-left: 20px;
+    font-size: 18px;
 }
 
 input {
@@ -83,16 +88,8 @@ input {
 }
 
 label {
-    margin-left: 20px;
-    font-size: 18px;
-}
-
-ul {
-    list-style: none;
-}
-
-li {
-    line-height: 2;
+    display: block;
+    margin-left: 20px;  
 }
 
 #buttonContainer{
@@ -124,3 +121,4 @@ li {
     font-size: 30px;
     text-align: center;
 }
+
